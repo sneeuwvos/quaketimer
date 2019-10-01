@@ -1,0 +1,73 @@
+<html>
+<head>
+<style>
+.heavy {
+    background-color:#bbeebb;
+}
+.mega {
+    background-color:#bcdeff;
+}
+</style>
+<script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
+<script type="text/javascript">
+
+var mega_start = 35;
+var mega_raw_start = new Date().getTime();
+var heavy_start = 35;
+var heavy_raw_start = new Date().getTime();
+
+$(document).ready(function() {
+    var mega_timer = setInterval(function() {
+       var raw_now = new Date().getTime();
+       var diff = (raw_now - mega_raw_start) / 1000.0; // seconds
+       var time_now = mega_start - diff;
+       if(time_now < 0) {
+           mega_start += 30;
+           time_now += 30;
+       }
+       time_now = Math.round(time_now);
+       $('#mega').text(time_now);
+    }, 50);
+
+    var heavy_timer = setInterval(function() {
+       var raw_now = new Date().getTime();
+       var diff = (raw_now - heavy_raw_start) / 1000.0; // seconds
+       var time_now = heavy_start - diff;
+       if(time_now < 0) {
+           heavy_start += 30;
+           time_now += 30;
+       }
+       time_now = Math.round(time_now);
+       $('#heavy').text(time_now);
+    }, 50);
+
+    $('#heavyclick').click(function() {
+        heavy_raw_start = new Date().getTime();
+        heavy_start = 30;
+    });
+
+    $('#megaclick').click(function() {
+        mega_raw_start = new Date().getTime();
+        mega_start = 30;
+    });
+});
+</script>
+<title>Stopwatch</title>
+</head>
+<body>
+    <center>
+    <div id="container">
+        <div id="main">
+            <div id="heavyclick" class="heavy">
+                <br /><div>Heavy</div><br />
+                <div id="heavy">---</div><br /><br />
+            </div>
+            <div id="megaclick" class="mega">
+                <br /><div>Mega</div><br />
+                <div id="mega">---</div><br /><br />
+            </div>
+        </div>
+    </div>
+    </center>
+</body>
+</html>
