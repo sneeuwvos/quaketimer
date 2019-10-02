@@ -25,28 +25,29 @@ var heavy_start = 35;
 var heavy_raw_start = Date.now();
 
 $(document).ready(function() {
-    var mega_timer = setInterval(function() {
+    var the_timer = setInterval(function() {
        var raw_now = Date.now();
-       var diff = (raw_now - mega_raw_start) / 1000.0; // seconds
-       var time_now = mega_start - diff;
-       if(time_now < 0) {
-           mega_start += 30;
-           time_now += 30;
-       }
-       time_now = Math.round(time_now);
-       $('#mega').text(time_now);
-    }, 50);
 
-    var heavy_timer = setInterval(function() {
-       var raw_now = Date.now();
-       var diff = (raw_now - heavy_raw_start) / 1000.0; // seconds
-       var time_now = heavy_start - diff;
-       if(time_now < 0) {
-           heavy_start += 30;
-           time_now += 30;
+       var diff_mega = (raw_now - mega_raw_start) / 1000.0; // seconds
+       var diff_heavy = (raw_now - heavy_raw_start) / 1000.0; // seconds
+
+       var time_now_mega = mega_start - diff_mega;
+       if(time_now_mega < 0) {
+           mega_start += 30;
+           time_now_mega += 30;
        }
-       time_now = Math.round(time_now);
-       $('#heavy').text(time_now);
+
+       var time_now_heavy = heavy_start - diff_heavy;
+       if(time_now_heavy < 0) {
+           heavy_start += 30;
+           time_now_heavy += 30;
+       }
+
+       time_now_mega = Math.round(time_now_mega);
+       $('#mega').text(time_now_mega);
+
+       time_now_heavy = Math.round(time_now_heavy);
+       $('#heavy').text(time_now_heavy);
     }, 50);
 
     $('#heavyclick').click(function() {
