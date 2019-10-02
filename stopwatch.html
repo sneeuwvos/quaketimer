@@ -34,57 +34,57 @@ var heavy_state = 0;
 
 $(document).ready(function() {
     var the_timer = setInterval(function() {
-       var raw_now = Date.now();
+        var raw_now = Date.now();
 
-       var diff_mega = (raw_now - mega_raw_start) / 1000.0; // seconds
-       var diff_heavy = (raw_now - heavy_raw_start) / 1000.0; // seconds
+        var diff_mega = (raw_now - mega_raw_start) / 1000.0; // seconds
+        var diff_heavy = (raw_now - heavy_raw_start) / 1000.0; // seconds
 
-       var time_now_mega = mega_start - diff_mega;
-       if(time_now_mega < 0) {
-           mega_start += 30;
-           time_now_mega += 30;
-       }
+        var time_now_mega = mega_start - diff_mega;
+        if(time_now_mega < 0) {
+            mega_start += 30;
+            time_now_mega += 30;
+        }
 
-       var time_now_heavy = heavy_start - diff_heavy;
-       if(time_now_heavy < 0) {
-           heavy_start += 30;
-           time_now_heavy += 30;
-       }
+        var time_now_heavy = heavy_start - diff_heavy;
+        if(time_now_heavy < 0) {
+            heavy_start += 30;
+            time_now_heavy += 30;
+        }
 
-       time_now_mega = Math.round(time_now_mega);
-       $('#mega').text(time_now_mega);
+        time_now_mega = Math.round(time_now_mega);
+        $('#mega').text(time_now_mega);
 
-       time_now_heavy = Math.round(time_now_heavy);
-       $('#heavy').text(time_now_heavy);
+        time_now_heavy = Math.round(time_now_heavy);
+        $('#heavy').text(time_now_heavy);
 
-       /* Add the blinking */
-       if(time_now_heavy < 5) {
-         if(heavy_state) {
-             $('#heavyclick').css("background-color", heavy_color_inv);
-             heavy_state = 0;
-         }
-         else {
-             $('#heavyclick').css("background-color", heavy_color);
-             heavy_state = 1;
-         }
-       }
-       else {
-           $('#heavyclick').css("background-color", heavy_color);
-       }
+        /* Add the blinking */
+        if(time_now_heavy < 5) {
+            if(heavy_state) {
+                $('#heavyclick').css("background-color", heavy_color_inv);
+                heavy_state = 0;
+            }
+            else {
+                $('#heavyclick').css("background-color", heavy_color);
+                heavy_state = 1;
+            }
+        }
+        else {
+            $('#heavyclick').css("background-color", heavy_color);
+        }
 
-       if(time_now_mega < 5) {
-         if(mega_state) {
-             $('#megaclick').css("background-color", mega_color_inv);
-             mega_state = 0;
-         }
-         else {
-             $('#megaclick').css("background-color", mega_color);
-             mega_state = 1;
-         }
-       }
-       else {
-           $('#megaclick').css("background-color", mega_color);
-       }
+        if(time_now_mega < 5) {
+            if(mega_state) {
+                $('#megaclick').css("background-color", mega_color_inv);
+                mega_state = 0;
+            }
+            else {
+                $('#megaclick').css("background-color", mega_color);
+                mega_state = 1;
+            }
+        }
+        else {
+            $('#megaclick').css("background-color", mega_color);
+        }
     }, 50);
 
     $('#heavyclick').click(function() {
