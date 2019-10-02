@@ -58,7 +58,7 @@ $(document).ready(function() {
         $('#heavy').text(time_now_heavy);
 
         /* Add the blinking */
-        if(time_now_heavy < 5) {
+        if(time_now_heavy <= 5) {
             if(heavy_state) {
                 $('#heavyclick').css("background-color", heavy_color_inv);
                 heavy_state = 0;
@@ -72,7 +72,7 @@ $(document).ready(function() {
             $('#heavyclick').css("background-color", heavy_color);
         }
 
-        if(time_now_mega < 5) {
+        if(time_now_mega <= 5) {
             if(mega_state) {
                 $('#megaclick').css("background-color", mega_color_inv);
                 mega_state = 0;
