@@ -25,12 +25,10 @@ var heavy_start = 35;
 var heavy_raw_start = Date.now();
 
 var mega_color = '#bcdeff';
-var mega_color_inv = '#89abcc';
-var mega_state = 0;
+var mega_color_inv = '#feee99';
 
 var heavy_color = '#bbeebb';
-var heavy_color_inv = '#88bb88';
-var heavy_state = 0;
+var heavy_color_inv = '#ff77ff';
 
 $(document).ready(function() {
     var the_timer = setInterval(function() {
@@ -57,30 +55,16 @@ $(document).ready(function() {
         time_now_heavy = Math.round(time_now_heavy);
         $('#heavy').text(time_now_heavy);
 
-        /* Add the blinking */
+        /* Add the color warning */
         if(time_now_heavy <= 5) {
-            if(heavy_state) {
-                $('#heavyclick').css("background-color", heavy_color_inv);
-                heavy_state = 0;
-            }
-            else {
-                $('#heavyclick').css("background-color", heavy_color);
-                heavy_state = 1;
-            }
+            $('#heavyclick').css("background-color", heavy_color_inv);
         }
         else {
             $('#heavyclick').css("background-color", heavy_color);
         }
 
         if(time_now_mega <= 5) {
-            if(mega_state) {
-                $('#megaclick').css("background-color", mega_color_inv);
-                mega_state = 0;
-            }
-            else {
-                $('#megaclick').css("background-color", mega_color);
-                mega_state = 1;
-            }
+            $('#megaclick').css("background-color", mega_color_inv);
         }
         else {
             $('#megaclick').css("background-color", mega_color);
