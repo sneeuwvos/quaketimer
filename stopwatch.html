@@ -31,8 +31,16 @@ var mega_color_inv = '#feee99';
 
 $(document).ready(function() {
     var the_timer = setInterval(function() {
+        // Get the current time
         var raw_now = Date.now();
 
+        /**
+          * Computations
+          *
+          * This bit of code is taking the current time, and turn-
+          * ing it into the values that will be used in the rest
+          * of the code.
+          */
         var diff_heavy = (raw_now - heavy_raw_start) / 1000.0; // seconds
         var diff_mega = (raw_now - mega_raw_start) / 1000.0; // seconds
 
@@ -48,13 +56,19 @@ $(document).ready(function() {
             time_now_mega += 30;
         }
 
+        /**
+          * UI Text
+          *
+          * The following bits of code prepare and write the timer
+          * values.
+          */
         time_now_mega = Math.round(time_now_mega);
         $('#mega').text(time_now_mega);
 
         time_now_heavy = Math.round(time_now_heavy);
         $('#heavy').text(time_now_heavy);
 
-        /* Add the color warning */
+        // UI Color warning switch
         if(time_now_heavy <= 5) {
             $('#heavyclick').css("background-color", heavy_color_inv);
         }
@@ -68,8 +82,17 @@ $(document).ready(function() {
         else {
             $('#megaclick').css("background-color", mega_color);
         }
-    }, 50);
+    }, 50); // Refresh everything at ~20 Hz (~50 ms per refresh)
 
+    /**
+      * Hooks on the tap/click actions
+      *
+      * Used to reset timers in case they get out of sync. When tapped
+      * or clicked, timer's value will reset to 29. It is assumed that
+      * player may need that second to register that the pickup was
+      * taken and reach out to the phone to tap. Else, they can esti-
+      * mate when is one second after the pickup and tap then
+      */
     $('#heavyclick').click(function() {
         heavy_raw_start = Date.now();
         heavy_start = 29;
