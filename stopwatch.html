@@ -19,34 +19,33 @@ body {
 <script src="http://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script type="text/javascript">
 
-var mega_start = 35;
-var mega_raw_start = Date.now();
 var heavy_start = 35;
 var heavy_raw_start = Date.now();
-
-var mega_color = '#bcdeff';
-var mega_color_inv = '#feee99';
-
 var heavy_color = '#bbeebb';
 var heavy_color_inv = '#ff77ff';
+
+var mega_start = 35;
+var mega_raw_start = Date.now();
+var mega_color = '#bcdeff';
+var mega_color_inv = '#feee99';
 
 $(document).ready(function() {
     var the_timer = setInterval(function() {
         var raw_now = Date.now();
 
-        var diff_mega = (raw_now - mega_raw_start) / 1000.0; // seconds
         var diff_heavy = (raw_now - heavy_raw_start) / 1000.0; // seconds
-
-        var time_now_mega = mega_start - diff_mega;
-        if(time_now_mega < 0) {
-            mega_start += 30;
-            time_now_mega += 30;
-        }
+        var diff_mega = (raw_now - mega_raw_start) / 1000.0; // seconds
 
         var time_now_heavy = heavy_start - diff_heavy;
         if(time_now_heavy < 0) {
             heavy_start += 30;
             time_now_heavy += 30;
+        }
+
+        var time_now_mega = mega_start - diff_mega;
+        if(time_now_mega < 0) {
+            mega_start += 30;
+            time_now_mega += 30;
         }
 
         time_now_mega = Math.round(time_now_mega);
